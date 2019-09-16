@@ -18,8 +18,6 @@ class ProductPage(BasePage):
 	def ale_name_book_assert_name_book(self):
 		alert_name_book = self.browser.find_element(*AddToCartLocators.ALERT_CART_NAME_BOOK)
 		name_book = self.browser.find_element(*AddToCartLocators.NAME_BOOK)
-		print(f"1: {alert_name_book.text}")
-		print(f"2: {name_book.text}")
 		assert alert_name_book.text == name_book.text, "Alert with name of book != name of book"
 
 	def should_be_alert_price(self):
@@ -28,7 +26,5 @@ class ProductPage(BasePage):
 	def ale_price_book_assert_price_book(self):
 		alert_price_book = self.browser.find_element(*AddToCartLocators.ALERT_CART_PRICE_NUM)
 		price_book = self.browser.find_element(*AddToCartLocators.PRICE_BOOK)
-		print(f"3: {alert_price_book.text}")
-		print(f"4: {price_book.text}")
 		assert alert_price_book.text == price_book.text, "Alert with price of book != price of book"
 
