@@ -4,9 +4,6 @@ from selenium.webdriver.common.by import By
 
 # класс Page Object
 class ProductPage(BasePage):
-	def __init__(self, *args, **kwargs):
-		super(ProductPage, self).__init__(*args, **kwargs)
-
 	def should_be_cart_button(self):
 		assert self.is_element_present(*AddToCartLocators.BUTTON_CART), "Button 'add to cart' is not presented"
 
