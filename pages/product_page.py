@@ -1,10 +1,12 @@
 from .base_page import BasePage
 from .locators import AddToCartLocators
 from selenium.webdriver.common.by import By
-import time
 
 # класс Page Object
 class ProductPage(BasePage):
+	def __init__(self, *args, **kwargs):
+		super(ProductPage, self).__init__(*args, **kwargs)
+
 	def should_be_cart_button(self):
 		assert self.is_element_present(*AddToCartLocators.BUTTON_CART), "Button 'add to cart' is not presented"
 
@@ -28,3 +30,10 @@ class ProductPage(BasePage):
 		price_book = self.browser.find_element(*AddToCartLocators.PRICE_BOOK)
 		assert alert_price_book.text == price_book.text, "Alert with price of book != price of book"
 
+	def cant_see_success_message(self):
+		assert self.is_not_element_present(*AddToCartLocators.ALERT_CART_NAME), \
+			"Success message is presented, but should not be"
+
+	def message_disappeared(self):
+		assert self.is_disappeared(*AddToCartLocators.ALERT_CART_NAME), \
+			"Success message is presented, but should not be"
