@@ -13,6 +13,16 @@ class AddToCartLocators():
 	PRICE_BOOK = (By.XPATH, "//div[contains(@class, 'product_main')]/p[contains(@class, 'price_color')]") #цена книги
 
 class BasePageLocators():
-    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
-    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
-    
+	LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+	LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+
+class LoginPageLocators():
+	LOG_IN_FORM = (By.CSS_SELECTOR, "#login_form")
+	REG_FORM = (By.CSS_SELECTOR, "#register_form")
+
+class BasketPageLocators():
+	BASKET_LINK = (By.XPATH, "//div[contains(@class, 'basket-mini')]/span/a")
+	#BASKET_EMPTY = (By.XPATH, "//p[contains(text(),'Your basket is empty.')]")
+	BASKET_CONT_TEXT = (By.XPATH, "//div[@id='content_inner']")
+	BASKET_NOT_EMPTY = (By.XPATH, "//form[@class='basket_summary']")
+	
