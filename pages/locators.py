@@ -15,10 +15,17 @@ class AddToCartLocators():
 class BasePageLocators():
 	LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
 	LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+	USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
 class LoginPageLocators():
 	LOG_IN_FORM = (By.CSS_SELECTOR, "#login_form")
 	REG_FORM = (By.CSS_SELECTOR, "#register_form")
+	REG_EMAIL = (By.CSS_SELECTOR, "#id_registration-email")
+	REG_PASSWORD = (By.CSS_SELECTOR, "#id_registration-password1")
+	REG_CONF_PASSWORD = (By.CSS_SELECTOR, "#id_registration-password2")
+	BUTTON_REG = (By.NAME, "registration_submit")
+	#SUCSESSFUL_REG = (By.XPATH, "//div[1]/div[1][@class='alertinner wicon']")
+	
 
 class BasketPageLocators():
 	BASKET_LINK = (By.XPATH, "//div[contains(@class, 'basket-mini')]/span/a")
