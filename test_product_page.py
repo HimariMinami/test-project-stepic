@@ -1,6 +1,8 @@
 import pytest
 from pages.product_page import ProductPage
 from pages.basket_page import BasketPage
+from pages.login_page import LoginPage
+import time
 
 #для запуска: pytest -v -s --tb=line --language=en test_product_page.py
 
@@ -74,3 +76,34 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
 	page.go_to_basket_from_header_of_the_site()
 	page.is_basket_empty()
 	page.is_basket_not_empty()
+
+class TestUserAddToBasketFromProductPage():
+	@pytest.fixture(scope="function", autouse=True)
+	def setup(self, browser):
+		link = "http://selenium1py.pythonanywhere.com/accounts/login/"
+		lpage = LoginPage(browser, link)
+		lpage.open()
+		email = str(time.time()) + "@fakemail.org"
+		password = "Q12wSx4321"
+		print("email = " + email)
+		lpage.register_new_user(email, password)
+		lpage.should_be_authorized_user() #проверка, что пользователь залогинен
+
+	def test_user_can_add_product_to_basket(self, browser):
+		link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
+		#link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+		page = ProductPage(browser, link)	# инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
+		page.open()							# открываем страницу
+		page.should_be_cart_button()
+		page.add_to_cart()
+		page.solve_quiz_and_get_code()
+		page.should_be_alert_name()
+		page.ale_name_book_assert_name_book()
+		page.should_be_alert_price()
+		page.ale_price_book_assert_price_book()
+
+	def test_user_cant_see_success_message(self, browser):
+		link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
+		page = ProductPage(browser, link)	# инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
+		page.open()
+		page.cant_see_success_message()
